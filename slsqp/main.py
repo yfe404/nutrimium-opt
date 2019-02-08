@@ -65,7 +65,7 @@ def get_ingredients():
 
 def get_target():
     target = {
-	"proteins": 30,
+	"proteins": 35,
 	"carbohydrates": 0,
 	"fats": 0,
 	"calories": 600
@@ -79,7 +79,6 @@ def get_price(quantities):
     return sum([ingredients[i]["price"]*quantities[i] for i in range(len(ingredients))])
 
 def evaluate(quantities):
-    utility = 0
     ingredients = get_ingredients()
     target = get_target()
 
@@ -90,16 +89,17 @@ def evaluate(quantities):
         for idx, ingredient in enumerate(ingredients):
              found[attribute] += ingredient[attribute] * quantities[idx]
 
-        if target[attribute] > 0:
-            utility += abs(found[attribute] - target[attribute])
-           
     print(found)
     price = get_price(quantities)
     print(price)
-    return utility + price
+    return price
 
 if __name__ == "__main__":
     ingredients = get_ingredients()
+    target = get_target()
+
+    epsilon = 25/2
+    
     print("Using: ")
     [print (x["name"]) for x in ingredients]
 
@@ -107,13 +107,14 @@ if __name__ == "__main__":
     x0 = [1 for _ in range(len(ingredients))]
     bounds = [(0, None) for _ in range(len(ingredients))]
 
-    
     print ("Initial utility: {}".format(evaluate(x0)))
     print("==============================")
 
     cons = (
-        {'type': 'eq', 'fun': lambda x:  x[0] - 0.30},
-        {'type': 'ineq', 'fun': lambda x:  x[1] - 0.4}
+        {'type': 'ineq', 'fun': lambda x: sum([x[i]*ingredients[i]["calories"] for i in range(len(ingredients))]) - epsilon - target["calories"]},
+        {'type': 'ineq', 'fun': lambda x: -sum([x[i]*ingredients[i]["calories"] for i in range(len(ingredients))]) - epsilon + target["calories"]},
+        {'type': 'ineq', 'fun': lambda x: -sum([x[i]*ingredients[i]["proteins"] for i in range(len(ingredients))]) + target["proteins"]}
+
     )
 
     res = minimize(evaluate, x0=x0, method='SLSQP',  constraints=cons, bounds=bounds, options={'disp':True})
