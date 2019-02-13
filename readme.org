@@ -29,6 +29,86 @@ You can now invoke the Lambda directly and even see the resulting log via
 sls invoke -f opt -p mocks/opt-event.json 
 #+END_SRC
 
+*** Sample input 
+
+The file =mocks/opt-event.json= contains the following data
+
+#+BEGIN_SRC sh
+{
+  "target": {
+    "proteins": 30,
+    "carbohydrates": 0,
+    "fats": 0,
+    "calories": 600
+  },
+  "ingredients": [
+    {
+      "name": "Beurre de cacahuètes",
+      "quantity": 100,
+      "unit": "g",
+      "calories": 592,
+      "proteins": 22.4,
+      "carbohydrates": 21,
+      "fats": 51.5,
+      "price": 2.4
+    },
+    {
+      "name": "Myrtilles",
+      "quantity": 100,
+      "unit": "g",
+      "calories": 70.5,
+      "proteins": 1,
+      "carbohydrates": 15.5,
+      "fats": 0.5,
+      "price": 0.9
+    },
+    {
+      "name": "Framboises",
+      "quantity": 100,
+      "unit": "g",
+      "calories": 36,
+      "proteins": 1,
+      "carbohydrates": 8,
+      "fats": 0,
+      "price": 1.1
+    },
+    {
+      "name": "Pomme",
+      "quantity": 100,
+      "unit": "g",
+      "calories": 54,
+      "proteins": 0.3,
+      "carbohydrates": 12,
+      "fats": 0.3,
+      "price": 0.08
+    },
+    {
+      "name": "Graines de courge",
+      "quantity": 100,
+      "unit": "g",
+      "calories": 553,
+      "proteins": 29,
+      "carbohydrates": 15,
+      "fats": 46.7,
+      "price": 2.2
+    },
+    {
+      "name": "Flocons de soja",
+      "quantity": 100,
+      "unit": "g",
+      "calories": 347,
+      "proteins": 37.3,
+      "carbohydrates": 3.1,
+      "fats": 20.6,
+      "price": 1
+    }
+  ]
+}
+#+END_SRC
+
+
+*** Output 
+
 The expected result should be similar to:
 
 #+BEGIN_SRC sh
