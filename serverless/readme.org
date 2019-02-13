@@ -32,5 +32,28 @@ sls invoke -f opt -p mocks/opt-event.json
 The expected result should be similar to:
 
 #+BEGIN_SRC sh
-< @todo >
+{
+  "statusCode": 200,
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true
+  },
+  "body": {
+    "quantities": [
+      0.29,
+      0.93,
+      0.96,
+      0.95,
+      0.27,
+      0.4
+    ],
+    "macros": {
+      "proteins": 31,
+      "carbohydrates": 44,
+      "fats": 36,
+      "calories": 611
+    },
+    "price": 3.66
+  }
+}
 #+END_SRC
