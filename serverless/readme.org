@@ -1,0 +1,36 @@
+* Recipe optimizer 
+
+#+BEGIN_QUOTE
+ Given a list of ingredients and a target profile
+ returns the best allocation of ingredient quantities 
+ so that the recipe matches the target profile
+ while minimizing the price of the recipe.
+ For now let's assume that a target profile consists in
+ 4 real values denoting respectively the number of calories,
+ proteins, carbohydrates and fats to match.
+ An ingredient has the 4 same attributes plus a price per unit.
+
+#+END_QUOTE
+
+** Deployment on AWS
+
+In order to deploy the you endpoint simply run
+
+#+BEGIN_SRC sh
+serverless deploy
+#+END_SRC
+
+
+** Usage 
+
+You can now invoke the Lambda directly and even see the resulting log via
+
+#+BEGIN_SRC sh
+sls invoke -f opt -p mocks/opt-event.json 
+#+END_SRC
+
+The expected result should be similar to:
+
+#+BEGIN_SRC sh
+< @todo >
+#+END_SRC
