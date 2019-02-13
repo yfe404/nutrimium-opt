@@ -1,0 +1,33 @@
+service: opt-recipe
+
+# Given a list of ingredients and a target profile
+# returns the best allocation of ingredient quantities 
+# so that the recipe matches the target profile
+# while minimizing the price of the recipe.
+# For now let's assume that a target profile consists in
+# 4 real values denoting respectively the number of calories,
+# proteins, carbohydrates and fats to match.
+# An ingredient has the 4 same attributes plus a price per unit.
+plugins:
+  - serverless-python-requirements
+
+    
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: eu-west-1
+
+
+functions:
+  opt:
+    handler: opt.main
+    events:
+      - http:
+          path: opt
+          method: post
+          cors: true
