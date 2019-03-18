@@ -50,7 +50,9 @@ The file =mocks/opt-event.json= contains the following data
       "proteins": 22.4,
       "carbohydrates": 21,
       "fats": 51.5,
-      "price": 2.4
+      "price": 2.4,
+      "quantity_min": 0.15,
+      "quantity_max": 0.20
     },
     {
       "name": "Myrtilles",
