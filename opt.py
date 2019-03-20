@@ -72,7 +72,7 @@ def main(event, context):
                 bounds[idx] = (bounds[idx][0], qty_max)
 
                 
-        res = minimize(evaluate, x0=x0, args=(ingredients), method='SLSQP',  constraints=cons, bounds=bounds, options={'disp':False})
+        res = minimize(evaluate, x0=x0, args=(ingredients), method='SLSQP',  constraints=cons, bounds=bounds, options={'disp':False, "maxiter": 10000})
 
         print(res)
 
